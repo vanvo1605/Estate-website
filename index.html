@@ -404,6 +404,7 @@
             if (message) {
                 const messages = document.getElementById('chat-messages');
                 const userMsg = document.createElement('div');
+                userMsg.className = "user-message";
                 userMsg.textContent = '🧑 You: ' + message;
                 messages.appendChild(userMsg);
                 input.value = '';
@@ -411,14 +412,21 @@
                 // Send message to AI Agent
                 const res = await fetch('https://vanscorner.duckdns.org/webhook-test/ac05bf04-2452-4dc1-b948-0984e1f358eb', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*"
+                 },
                 body: JSON.stringify({ "chatInput": message })
                 });
 
                 const data = await res.json();
                 console.log(data);
                 
-                document.getElementById('response').innerText = "Bot: " + data.answer || 'No reply';
+                const botMsg = document.createElement('div');
+                botMsg.className = "bot-message";
+                botMsg.textContent = '🤖 Bot: ' + (data.answer || 'No');
+                messages.appendChild(botMsg);
+                messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
 
             }
             }
