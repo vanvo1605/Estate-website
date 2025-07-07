@@ -424,7 +424,7 @@
                 
                 const botMsg = document.createElement('div');
                 botMsg.className = "bot-message";
-                botMsg.textContent = '🤖 Bot: ' + (data.answer || 'No');
+                botMsg.textContent = '🤖 Bot: ' + (data.answer || data.output || 'Sorry! Please try again!');
                 messages.appendChild(botMsg);
                 messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
 
