@@ -410,7 +410,7 @@
                 input.value = '';
 
                 // Send message to AI Agent
-                const res = await fetch('https://vanscorner.duckdns.org/webhook/chatbot', {
+                const res = await fetch('https://vanscorner.duckdns.org/n8n/webhook/chatbot', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -424,7 +424,7 @@
                 
                 const botMsg = document.createElement('div');
                 botMsg.className = "bot-message";
-                botMsg.textContent = '🤖 Bot: ' + (data.answer || data.output || 'Sorry! Please try again!');
+                botMsg.textContent = '🤖 Bot: ' + (data.answer || data.output || 'Sorry! Please try again later!');
                 messages.appendChild(botMsg);
                 messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
 
